@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cab Booking Dashboard</title>
+</head>
+<body bgcolor="#f2f2f2">
+
+<!-- Header -->
+<table width="100%" bgcolor="#007bff" cellpadding="15">
+    <tr>
+        <td align="center">
+            <font color="white" size="6">Online Cab Booking System</font>
+        </td>
+    </tr>
+</table>
+
+<!-- Main Layout -->
+<table width="100%" height="600">
+    <tr>
+
+        <!-- Navigation Sidebar -->
+        <td width="20%" bgcolor="#333" valign="top">
+            <font color="white">
+            <h3 align="center">Navigation</h3>
+            <hr color="white">
+
+            <ul>
+                <li><a href="#" style="color:white; text-decoration:none;">Dashboard</a></li><br>
+                <li><a href="#" style="color:white; text-decoration:none;">Book Cab</a></li><br>
+                <li><a href="#" style="color:white; text-decoration:none;">My Rides</a></li><br>
+                <li><a href="#" style="color:white; text-decoration:none;">Profile</a></li><br>
+                <li><a href="#" style="color:white; text-decoration:none;">Logout</a></li>
+            </ul>
+            </font>
+        </td>
+
+        <!-- Dashboard Content -->
+        <td width="80%" bgcolor="#ffffff" valign="top">
+            <br>
+            <h2>Dashboard</h2>
+
+            <!-- Dashboard Cards -->
+            <table width="90%" cellpadding="20">
+                <tr align="center">
+                    <td bgcolor="#e6e6e6">
+                        <h3>Total Rides</h3>
+                        <h2>10</h2>
+                    </td>
+                    <td bgcolor="#e6e6e6">
+                        <h3>Upcoming</h3>
+                        <h2>2</h2>
+                    </td>
+                    <td bgcolor="#e6e6e6">
+                        <h3>Completed</h3>
+                        <h2>8</h2>
+                    </td>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <!-- Booking Section -->
+            <h2>Book a Cab</h2>
+
+            <form>
+                <table cellpadding="10">
+                    <tr>
+                        <td>Pickup Location:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Drop Location:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td><input type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Time:</td>
+                        <td><input type="time"></td>
+                    </tr>
+                    <tr>
+                        <td>Cab Type:</td>
+                        <td>
+                            <select>
+                                <option>Mini</option>
+                                <option>Sedan</option>
+                                <option>SUV</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input type="submit" value="Book Cab">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

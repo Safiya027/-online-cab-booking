@@ -1,0 +1,590 @@
+   
+        /* =========================================
+           CSS STYLES
+           ========================================= */
+        
+        :root {
+            --primary-color: #1C0B2B;
+            --accent-color: #00F2FF;
+            --success-color: #ADFF2F;
+            --text-color: #F5F5F5;
+            --bg-light: #1C0B2B;
+            --sidebar-width: 250px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar Navigation --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color:var(--accent-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ADFF2F;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all var(--transition-speed);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-links a.active {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 30px;
+            transition: margin-left var(--transition-speed), width var(--transition-speed);
+        }
+
+        section {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        section.active-section {
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--accent-color);
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* --- HOME: Booking Interface & Animation --- */
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #95a5a6;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 12px 12px 45px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-book {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        .btn-book:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-book:active {
+            transform: scale(0.98);
+        }
+
+        /* --- Animation Stage --- */
+        .animation-stage {
+            background-color: #eef2f3;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #dfe6e9;
+        }
+        .button {
+          background-color: #00F2FF; /* Green background */
+          border: none; /* Remove default border */
+          color: #8A2BE2; /* White text */ /* White text */
+          padding: 5px 10px; /* Some padding */
+          text-align: center; /* Center the text */
+          text-decoration: none; /* Remove underline */
+          display: inline-block; /* Allows setting padding and margin */
+          font-size: 14px; /* Increase font size */
+          cursor: pointer; /* Change mouse cursor to a hand */
+          border-radius: 8px; /* Rounded corners */
+   }
+
+        .button:hover {
+          background-color: #00F2FF; /* Darker green on hover */
+        }
+        /* Map Background Lines */
+        .map-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(#dfe6e9 2px, transparent 2px),
+                linear-gradient(90deg, #dfe6e9 2px, transparent 2px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+
+        /* The Route Path */
+        .route-path {
+            width: 80%;
+            height: 4px;
+            background: #bdc3c7;
+            position: relative;
+            top: 20px;
+            border-radius: 2px;
+        }
+
+        /* Locations */
+        .location {
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            top: -6px;
+        }
+
+        .loc-start { left: 0; }
+        .loc-end { right: 0; }
+
+        /* The Cab */
+        .cab-container {
+            position: absolute;
+            top: -25px; /* Align with route */
+            left: 0;
+            width: 50px;
+            height: 50px;
+            transition: left 2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .car-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            background: #333;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Animation States */
+        .cab-container.driving {
+            animation: drive 4s forwards;
+        }
+
+        .cab-container.driving .status-badge {
+            opacity: 1;
+        }
+
+        @keyframes drive {
+            0% { left: 0; top: -25px; transform: rotate(0deg); }
+            45% { left: 45%; } /* Pickup */
+            50% { left: 45%; transform: rotate(5deg); } /* Pause */
+            55% { left: 45%; } /* Resume */
+            100% { left: 95%; top: -25px; transform: rotate(0deg); } /* Destination */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home-only translucent background (covers viewport) - replaced with a dedicated fixed element for stability */
+        .page-bg {
+            position: fixed;
+            inset: 0;
+            background-image: url('cab pic.jpg'); /* prefer AVIF, fallback to JPG */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0; /* hidden by default; toggled with .visible */
+            transition: opacity 240ms ease-in-out, visibility 240ms;
+            z-index: -1; /* behind content */
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .page-bg.visible {
+            opacity: 0.35; /* visible translucent level */
+            visibility: visible;
+        }
+
+        /* Keep home content above the background */
+        #home {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        #home > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Lead paragraph on home (larger, not bold) */
+        #home .home-lead {
+            font-size: 1.25rem; /* larger */
+            font-weight: 400;   /* normal weight */
+            color: var(--text-color);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            #home .home-lead { font-size: 1.05rem; }
+        }
+
+        /* Home heading uses accent color */
+        #home h1 {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .page-bg.visible { opacity: 0.25; }
+        }
+
+        /* --- About Section Styling --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color:#00F2FF;
+            margin-bottom: 15px;
+        }
+
+        /* --- Contact Section --- */
+        .contact-form {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        /* --- Toast Notification --- */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+        }
+
+        .toast {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+            min-width: 250px;
+        }
+
+        .toast.success { border-left: 5px solid var(--success-color); }
+        .toast.info { border-left: 5px solid var(--accent-color); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; pointer-events: none; }
+        }
+
+        /* --- Mobile Responsiveness --- */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1100;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .login-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+            display: flex;
+            align-items: stretch;
+            background: white;
+            padding: 24px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #333; /* Dark text on white box */
+            width: 90%;
+            max-width: 520px;
+            height: 480px; /* fixed height so both auth boxes match */
+            margin: 0;
+            justify-content: center;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            overflow: hidden;
+        }
+
+        .login-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 18px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .login-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .login-form .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            padding-right: 6px; /* leave space for scrollbar */
+        }
+
+        .login-form label {
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .login-form input {
+            font-size: 1.05rem;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .login-form button {
+            font-size: 1.05rem;
+            padding: 12px;
+            background: var(--accent-color);
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .signup-prompt {
+            margin-top: auto;
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Header layout for login page */
+        header {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1100;
+            background: transparent;
+        }
+
+        header nav {
+            margin-left: auto;
+        }
+
+        header nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .login-container { position: static; transform: none; margin: 80px auto; width: 95%; height: auto; overflow: visible; }
+            .signup-prompt { position: static; margin-top: 12px; }
+            header { position: static; padding: 12px; }
+            header nav a { margin-left: 10px; }
+        }
+
+        .login-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+
+/* Overrides for inputs inside the white login box to ensure they look good */
+        .login-container .input-group input {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+/* Ensure links inside the login box are visible */
+        .login-container a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CabWave - Enter Mobile Number</title>
+<!-- The user clicks "Contact Page" and goes to contact.html -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+        .top-bar {
+            background-color: #000;
+            color: #ffd700;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .card h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            border-color: #ffd700;
+        }
+        .btn {
+            background-color: #ffd700;
+            color: #000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #e6c200;
+        }
+        .info-text {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+        .back-link {
+            margin-top: 1.5rem;
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.5rem;
+            }
+            .top-bar {
+                padding: 0.75rem;
+            }
+            .logo {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">CabWave</div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Enter your Mobile Number</h2>
+            <div class="input-group">
+                <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" maxlength="10">
+            </div>
+            <button class="btn" onclick="sendOTP()">Send OTP</button>
+            <p class="info-text">We will send a 6-digit OTP to verify your number</p>
+            <a href="login.html" class="back-link">← Back to Login</a>
+        </div>
+    </div>
+    <script>
+        function sendOTP() {
+            const mobile = document.getElementById('mobile').value;
+            const mobileRegex = /^\d{10}$/;
+            if (!mobileRegex.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+            // Simulate sending OTP - in a real app, this would make an API call
+            alert('OTP sent to ' + mobile);
+            // Redirect to next page, e.g., window.location.href = 'otp.html';
+        }
+    </script>
+</body>
+</html>

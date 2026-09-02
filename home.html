@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CabWave - Online Cab Booking</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= AUTHENTICATION SECTION (Initial View) ================= -->
+    <div id="auth-section" class="auth-wrapper">
+        <div class="auth-card">
+            <div class="brand-logo">
+                <i class="fas fa-car-side"></i> CabWave
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form-container">
+                <h2>Welcome to CabWave</h2>
+                <p style="margin-bottom: 20px; color: #666;">Login to book your ride</p>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <p style="margin-top: 15px; font-size: 14px;">
+                    Don't have an account? <a href="#" onclick="toggleAuth('signup')" style="color: #f7c948; font-weight: 600;">Sign Up</a>
+                </p>
+            </div>
+
+            <!-- Signup Form (Hidden by default) -->
+            <div id="signup-form-container" class="hidden">
+                <h2>Create Account</h2>
+                <p style="margin-bottom: 20px; color: #666;">Join CabWave today</p>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Create password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+                <p style="margin-top: 15px; font-size: 14px;">
+                    Already have an account? <a href="#" onclick="toggleAuth('login')" style="color: #f7c948; font-weight: 600;">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= DASHBOARD SECTION (Hidden until Login) ================= -->
+    <div id="dashboard-section" class="dashboard-container hidden">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="brand">
+                <i class="fas fa-car-side"></i> CabWave
+            </div>
+            
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showSection('home', this)">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('about', this)">
+                        <i class="fas fa-info-circle"></i> About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('contact', this)">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </li>
+                <li class="nav-item" style="margin-top: auto;">
+                    <a href="#" class="nav-link" onclick="logout()" style="color: #e74c3c;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-details">
+                    <p style="font-size: 14px; font-weight: 600;">John Doe</p>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- HOME SECTION -->
+            <section id="home" class="section active">
+                <header>
+                    <div class="page-title">
+                        <h2>Dashboard</h2>
+                        <p>Welcome back, ready to book your ride?</p>
+                    </div>
+                    <div class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Total Rides</p>
+                        </div>
+                        <div class="stat-icon"><i class="fas fa-car-side"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>$450</h3>
+                            <p>Total Spent</p>
+                        </div>
+                        <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>4.8</h3>
+                            <p>Rating</p>
+                        </div>
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    </div>
+                </div>
+
+                <div class="page-title" style="margin-top: 30px; margin-bottom: 20px;">
+                    <h3>Book a Ride</h3>
+                </div>
+                
+                <div class="booking-container">
+                    <div class="map-placeholder" id="mapArea">
+                        <div style="text-align: center;">
+                            <i class="fas fa-map-marked-alt map-pin"></i>
+                            <i class="fas fa-map-pin map-pin drop"></i>
+                            <p style="margin-top: 20px; color: #7f8c8d; font-size: 14px;">Interactive Map View</p>
+                        </div>
+                    </div>
+
+                    <div class="booking-form">
+                        <div class="form-group">
+                            <label>Pickup Location</label>
+                            <input type="text" class="form-control" placeholder="Enter pickup location" value="Current Location">
+                        </div>
+                        <div class="form-group">
+                            <label>Dropoff Location</label>
+                            <input type="text" class="form-control" placeholder="Where to?" id="dropoffInput">
+                        </div>
+
+                        <label>Select Car Type</label>
+                        <div class="car-selection">
+                            <div class="car-option selected" onclick="selectCar(this, 15)">
+                                <i class="fas fa-car"></i>
+                                <span>Economy</span>
+                            </div>
+                            <div class="car-option" onclick="selectCar(this, 25)">
+                                <i class="fas fa-car-side"></i>
+                                <span>Premium</span>
+                            </div>
+                            <div class="car-option" onclick="selectCar(this, 35)">
+                                <i class="fas fa-shuttle-van"></i>
+                                <span>Van</span>
+                            </div>
+                            <div class="car-option" onclick="selectCar(this, 40)">
+                                <i class="fas fa-gem"></i>
+                                <span>Luxury</span>
+                            </div>
+                        </div>
+
+                        <div class="price-estimate">
+                            Estimated Fare: <br>
+                            <span class="price-value" id="priceDisplay">$15.00</span>
+                        </div>
+
+                        <button class="btn btn-primary" style="margin-top: 20px;" onclick="bookRide()">Book Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="section">
+                <header>
+                    <div class="page-title">
+                        <h2>About Us</h2>
+                        <p>Learn more about our platform</p>
+                    </div>
+                </header>
+
+                <div class="about-content">
+                    <h3>What is CabWave?</h3>
+                    <p>CabWave is a cutting-edge Online Cab Booking System designed to provide seamless, reliable, and affordable transportation solutions. We connect passengers with local drivers at the tap of a button, ensuring safety and convenience.</p>
+                    <br>
+                    <p>Our platform leverages real-time GPS tracking to optimize routes and reduce wait times. Whether you need a quick ride to the airport, a daily commute, or a luxury car for a special event, CabWave offers a diverse fleet to meet your specific needs.</p>
+
+                    <div class="features-grid">
+                        <div class="feature-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Safe Rides</h4>
+                            <p>All drivers are vetted.</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Fast Pickup</h4>
+                            <p>Drivers near you instantly.</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h4>Best Prices</h4>
+                            <p>Transparent fare estimates.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="section">
+                <header>
+                    <div class="page-title">
+                        <h2>Contact Us</h2>
+                        <p>We are here to help 24/7</p>
+                    </div>
+                </header>
+
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Have a question or feedback? Fill out the form or reach us directly.</p>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>support@cabwave.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Headquarters</h4>
+                                <p>123 Tech Avenue, Silicon Valley, CA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form onsubmit="handleContact(event)">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" class="form-control" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control" rows="4" required placeholder="How can we help?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Action Successful!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

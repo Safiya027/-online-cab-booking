@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CabWave - Online Cab Booking System</title>
+    
+    <!-- Using Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="style.css">
+ 
+   
+</head>
+<body>
+   
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="brand">
+          <i class="fas fa-taxi"></i> CabWave
+    <!-- Navigation links follow -->
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active" onclick="navigate('home', this)"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about" onclick="navigate('about', this)"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="#contact" onclick="navigate('contact', this)"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div style="margin-top: auto; font-size: 0.8rem; color: #bdc3c7;">
+            &copy; 2025 CabWave
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- HOME SECTION -->
+        <section id="home" class="active-section">
+            <h1>Book Your Ride Instantly With CabWave</h1>
+            <p class="home-lead">Experience fast, safe, and affordable rides with our reliable cab booking service. Login or Signup to start booking your ride today.</p>
+            <p>
+              <a href="login.html" class="button">Login</a> 
+              &nbsp;|&nbsp;
+              <a href="signup.html" class="button">Signup</a>
+            </p>
+            <!-- Home-only background is applied via CSS -->
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h1>About Our System</h1>
+            <div class="feature-card" style="text-align: left; margin-bottom: 20px;">
+                <p>
+                    <strong>CabWave</strong> is a modern online cab booking system designed to provide seamless urban mobility. 
+                    Our platform connects passengers with nearby drivers instantly, ensuring safe, reliable, and affordable transportation at the click of a button.
+                    By utilizing advanced GPS tracking and real-time algorithms, we minimize wait times and optimize routes for the best possible experience.
+                </p>
+                <p>
+                    Whether you need a quick ride to the office, a comfortable journey to the airport, or a late-night trip back home, 
+                    our diverse fleet of vehicles is available 24/7. We prioritize safety with verified drivers and cashless payment options.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Real-Time Tracking</h3>
+                    <p>Watch your driver arrive in real-time on the map.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Rides</h3>
+                    <p>All drivers are background checked and rides are monitored.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Cashless Payments</h3>
+                    <p>Pay securely via credit card or digital wallets.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h1>Contact Us</h1>
+            <p>Have questions or need support? Reach out to us anytime.</p>
+            
+            <div class="contact-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Your Name" id="contact-name">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Your Email" id="contact-email">
+                </div>
+                <textarea rows="5" placeholder="How can we help you?" id="contact-msg"></textarea>
+                <button class="btn-book" onclick="submitContact()">Send Message</button>
+            </div>
+        </section>
+
+    </main>
+    
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+    <script src="risk.js"></script>
+    
+</body>
+</html>
